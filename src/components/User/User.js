@@ -7,7 +7,7 @@ const User = ({img, name, followers}) => {
   return (
     <div className="container mt-4">
       <div className="d-flex align-items-center">
-        <img src={sampleImg} alt="user" className="user-image mr-2" />
+        <img src={sampleImg} alt="user" className="user-circle-image mr-2" />
         <div className="d-flex flex-column">
           <span>Damon Joung</span>
           <span className="text-secondary">

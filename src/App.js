@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import {Details, Hoem, Login, Register, Profile, Search} from './components/index';
+import {Details, Home, Login, Register, Profile, Search} from './components/index';
 
 function App() {
   return (
     <div>
-      <Search />
+      <Profile />
     </div>
   );
 }

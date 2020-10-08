@@ -1,4 +1,4 @@
-.user-image {
+.user-circle-image {
   width: 65px;
   height: 65px;
   border-radius: 100px;
@@ -14,4 +14,19 @@
 
 .search-box {
   border-radius: 50px;
+}
+
+.background-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.profile-image {
+  width: 160px;
+  height: 160px;
+}
+
+.profile-position {
+  top: -80px;
 }
