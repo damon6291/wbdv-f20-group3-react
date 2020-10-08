@@ -1,9 +1,13 @@
 import React from 'react';
 import './App.css';
-import {Details, Hoem, Login, Register, Profile, Search} from './component/index';
+import {Details, Hoem, Login, Register, Profile, Search} from './components/index';
 
 function App() {
-  return <div></div>;
+  return (
+    <div>
+      <Search />
+    </div>
+  );
 }
 
 export default App;

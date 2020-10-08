@@ -4,3 +4,6 @@ export {default as Login} from './Login/Login';
 export {default as Register} from './Login/Register';
 export {default as Profile} from './Profile/Profile';
 export {default as Search} from './Search/Search';
+export {default as Navbar} from './Navbar/Navbar';
+export {default as User} from './User/User';
+export {default as Playlist} from './Playlist/Playlist';
