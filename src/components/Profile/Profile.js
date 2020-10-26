@@ -10,10 +10,10 @@ const Profile = () => {
     <React.Fragment>
       <Navbar />
       <div>
-        <img src={backgroundImg} alt="background" className="background-image" />
+        <img src={backgroundImg} alt="background" className="background-image shadow" />
         <div className="container position-relative profile-position">
           <div className="d-flex align-items-end px-5">
-            <img src={exampleImg} alt="profile" className="profile-image border mr-4" />
+            <img src={exampleImg} alt="profile" className="profile-image border mr-4 shadow" />
             <div className="d-flex flex-column">
               <h4 className="mb-2">Damon Joung</h4>
               <span className="text-secondary mb-2">

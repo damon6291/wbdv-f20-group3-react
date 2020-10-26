@@ -11,7 +11,7 @@ const Search = () => {
           <input
             type="text"
             placeholder="Search..."
-            className="w-75 mx-auto my-5 search-box px-2 py-2"
+            className="w-75 mx-auto my-5 search-box px-2 py-2 shadow"
           />
           <div className="d-flex">
             <div className="col-8">
