@@ -2,7 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Navbar, User, Playlist} from '../index';
 
-const Search = () => {
+const Search = ({playlists, findPlaylists}) => {
   return (
     <React.Fragment>
       <Navbar />
