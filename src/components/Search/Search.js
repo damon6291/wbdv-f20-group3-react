@@ -1,8 +1,17 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Navbar, User, Playlist} from '../index';
 
 const Search = ({playlists, findPlaylists}) => {
+  const [query, setQuery] = useState('');
+  // const modifiedPlayLists = playlists.filter((playlist) => {
+  //   return playlist.toLowerCase().includes(query.toLowerCase()) ? playlist : null;
+  // });
+
+  // useEffect(() => {
+  //   findPlaylists();
+  // }, []);
+
   return (
     <React.Fragment>
       <Navbar />
@@ -19,6 +28,9 @@ const Search = ({playlists, findPlaylists}) => {
                 <h3 className="border-bottom pl-4 pb-3">Playlists</h3>
                 <Playlist />
                 <Playlist />
+                {/* {modifiedPlayLists.map((playlist) => (
+                  <Playlist key={playlist.id} playlist={playlist} />
+                ))} */}
               </div>
             </div>
             <div className="col-4">
