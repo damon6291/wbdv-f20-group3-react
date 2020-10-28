@@ -5,11 +5,11 @@ import "animate.css";
 const Login = () => {
 	return (
 		<div
-			class="container mt-4 shadow animate__animated animate__fadeIn"
-			style={{ border: "solid 2px lightgrey", borderRadius: "20px" }}
+			class="container webdv-playlist-style shadow animate__animated animate__fadeIn"
+			// style={{ border: "solid 2px lightgrey", borderRadius: "20px" }}
 		>
 			<div className="d-flex flex-column align-items-center align-content-end m-3">
-				<h2 className="">Login&nbsp;</h2>
+				<h2 className="mt-3">Login&nbsp;</h2>
 
 				<span className="text-muted">
 					Enter your account information below...

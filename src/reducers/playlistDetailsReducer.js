@@ -20,11 +20,11 @@ const initialState = {
 				"https://upload.wikimedia.org/wikipedia/en/f/f4/Late_registration_cd_cover.jpg",
 		},
 		{
-			title: "Pyramids",
-			artist: "Frank Ocean",
-			runtime: "9:53",
+			title: "So It Goes",
+			artist: "Mac Miller",
+			runtime: "5:13",
 			coverImg:
-				"https://upload.wikimedia.org/wikipedia/en/2/28/Channel_ORANGE.jpg",
+				"https://upload.wikimedia.org/wikipedia/en/5/5e/Mac_Miller_-_Swimming.png",
 		},
 		{
 			title: "Pilot Jones",
@@ -32,6 +32,20 @@ const initialState = {
 			runtime: "3:04",
 			coverImg:
 				"https://upload.wikimedia.org/wikipedia/en/2/28/Channel_ORANGE.jpg",
+		},
+		{
+			title: "Mojo So Dope",
+			artist: "Kid Cudi",
+			runtime: "3:31",
+			coverImg:
+				"https://upload.wikimedia.org/wikipedia/en/0/0a/Kidcudimanonthemoonthelegendof.jpg",
+		},
+		{
+			title: "Understood",
+			artist: "Mick Jenkins",
+			runtime: "3:29",
+			coverImg:
+				"https://upload.wikimedia.org/wikipedia/en/0/0b/MickJenkinsPoaM.png",
 		},
 	],
 };

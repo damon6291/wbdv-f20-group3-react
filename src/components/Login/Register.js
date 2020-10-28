@@ -5,7 +5,7 @@ import "animate.css";
 const Register = () => {
 	return (
 		<div
-			class="container mt-4 shadow animate__animated animate__fadeIn"
+			class="container webdv-playlist-style mt-4 shadow animate__animated animate__fadeIn "
 			style={{ border: "solid 2px lightgrey", borderRadius: "20px" }}
 		>
 			<div className="d-flex flex-column align-items-center align-content-end m-3">
