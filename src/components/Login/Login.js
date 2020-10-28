@@ -1,10 +1,11 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "animate.css";
 
 const Login = () => {
 	return (
 		<div
-			class="container mt-4 shadow"
+			class="container mt-4 shadow animate__animated animate__fadeIn"
 			style={{ border: "solid 2px lightgrey", borderRadius: "20px" }}
 		>
 			<div className="d-flex flex-column align-items-center align-content-end m-3">
@@ -53,9 +54,11 @@ const Login = () => {
 			<div class="form-group row">
 				<button class="m-2 btn btn-block btn-success">Sign In</button>
 			</div>
-			<a className="m-2 float-left">I don't have an account!</a>
+			<a className="mt-4 float-left font-weight-bold">
+				I don't have an account!
+			</a>
 
-			<a href="#" className="float-right mt-2">
+			<a href="#" className="float-right mt-4 font-weight-bold">
 				I forgot my password!
 			</a>
 		</div>

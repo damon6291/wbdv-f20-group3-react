@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { connect } from "react-redux";
 
 import PlaylistItem from "./PlaylistItem.js";
+import "animate.css";
 
 /**
  * Match incoming API to this JSON format (so that it's compatible with both AM & Spotify )
@@ -58,7 +59,7 @@ const Details = ({ title, totalRuntime, tracks }) => {
 						borderRadius: "10px",
 					}}
 				>
-					<div className="d-flex flex-column align-items-end">
+					<div className="d-flex flex-column align-items-end animate__animated animate__fadeIn animate__slow">
 						<h3 className="mt-3 font-weight-bold">{title}</h3>
 						<h6 className="text-muted">
 							total runtime - {totalRuntime}
@@ -81,13 +82,13 @@ const Details = ({ title, totalRuntime, tracks }) => {
 				</div>
 
 				<div className="col-4 d-flex flex-column mt-5">
-					<button className="m-1 btn btn-info shadow font-weight-light">
+					<button className="m-1 btn btn-info shadow font-weight-light animate__animated animate__flipInX">
 						Share to profile
 					</button>
-					<button className="m-1 btn btn-info shadow font-weight-light">
+					<button className="m-1 btn btn-info shadow font-weight-light animate__animated animate__flipInX">
 						Import to library
 					</button>
-					<button className="m-1 btn btn-info shadow font-weight-light">
+					<button className="m-1 btn btn-info shadow font-weight-light animate__animated animate__flipInX">
 						...
 					</button>
 				</div>

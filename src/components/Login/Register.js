@@ -1,10 +1,11 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "animate.css";
 
 const Register = () => {
 	return (
 		<div
-			class="container mt-4 shadow"
+			class="container mt-4 shadow animate__animated animate__fadeIn"
 			style={{ border: "solid 2px lightgrey", borderRadius: "20px" }}
 		>
 			<div className="d-flex flex-column align-items-center align-content-end m-3">
@@ -89,7 +90,9 @@ const Register = () => {
 					Create my profile!
 				</button>
 			</div>
-			<a className="m-2 float-right">Already have an account?</a>
+			<a className="m-2 float-right font-weight-bold">
+				Already have an account?
+			</a>
 
 			{/* <a href="#" className="float-right mt-2">
 				I forgot my password!
