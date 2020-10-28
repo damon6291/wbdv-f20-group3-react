@@ -1,7 +1,48 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { connect } from "react-redux";
 
-const Details = () => {
+import PlaylistItem from "./PlaylistItem.js";
+
+/**
+ * Match incoming API to this JSON format (so that it's compatible with both AM & Spotify )
+ */
+// const sampleData = {
+// 	title: "Bob's Favorites Playlist",
+// 	totalRuntime: "12:33",
+// 	tracks: [
+// 		{
+// 			title: "Sierra Leone",
+// 			artist: "Frank Ocean",
+// 			runtime: "2:29",
+// 			coverImg:
+// 				"https://upload.wikimedia.org/wikipedia/en/2/28/Channel_ORANGE.jpg",
+// 		},
+// 		{
+// 			title: "Gone (feat. Consequence & Cam'ron)",
+// 			artist: "Kanye West",
+// 			runtime: "5:33",
+// 			coverImg:
+// 				"https://upload.wikimedia.org/wikipedia/en/f/f4/Late_registration_cd_cover.jpg",
+// 		},
+// 		{
+// 			title: "Pyramids",
+// 			artist: "Frank Ocean",
+// 			runtime: "9:53",
+// 			coverImg:
+// 				"https://upload.wikimedia.org/wikipedia/en/2/28/Channel_ORANGE.jpg",
+// 		},
+// 		{
+// 			title: "Pilot Jones",
+// 			artist: "Frank Ocean",
+// 			runtime: "3:04",
+// 			coverImg:
+// 				"https://upload.wikimedia.org/wikipedia/en/2/28/Channel_ORANGE.jpg",
+// 		},
+// 	],
+// };
+
+const Details = ({ title, totalRuntime, tracks }) => {
 	return (
 		<div className="container">
 			<div className="row">
@@ -18,76 +59,25 @@ const Details = () => {
 					}}
 				>
 					<div className="d-flex flex-column align-items-end">
-						<h3 className="mt-3 font-weight-bold">
-							Bob's Favorites Playlist
-						</h3>
-						<h6 className="text-muted">total runtime - 1hr 2m</h6>
+						<h3 className="mt-3 font-weight-bold">{title}</h3>
+						<h6 className="text-muted">
+							total runtime - {totalRuntime}
+						</h6>
 					</div>
 
-					<hr />
-					<div className="d-flex flex-row justify-content-between align-items-center">
-						<div className="d-flex flex-row align-items-center">
-							<img
-								src="https://upload.wikimedia.org/wikipedia/en/2/28/Channel_ORANGE.jpg"
-								className="m-1"
-								style={{
-									height: "75px",
-									width: "75px",
-									border: "solid 1px black",
-									borderRadius: "5px",
-								}}
-							/>
-							<div className="d-flex flex-column ml-2">
-								<h5>Sierra Leone</h5>
-								<h6 className="text-muted">by Frank Ocean</h6>
-							</div>
-						</div>
-
-						<span className="float-right font-italic">2:29</span>
-					</div>
-					<hr />
-					<div className="d-flex flex-row justify-content-between align-items-center">
-						<div className="d-flex flex-row align-items-center">
-							<img
-								src="https://upload.wikimedia.org/wikipedia/en/2/28/Channel_ORANGE.jpg"
-								className="m-1"
-								style={{
-									height: "75px",
-									width: "75px",
-									border: "solid 1px black",
-									borderRadius: "5px",
-								}}
-							/>
-							<div className="d-flex flex-column ml-2">
-								<h5>Pyramids</h5>
-								<h6 className="text-muted">by Frank Ocean</h6>
-							</div>
-						</div>
-
-						<span className="float-right font-italic">9:53</span>
-					</div>
-					<hr />
-					<div className="d-flex flex-row justify-content-between align-items-center">
-						<div className="d-flex flex-row align-items-center">
-							<img
-								src="https://upload.wikimedia.org/wikipedia/en/2/28/Channel_ORANGE.jpg"
-								className="m-1"
-								style={{
-									height: "75px",
-									width: "75px",
-									border: "solid 1px black",
-									borderRadius: "5px",
-								}}
-							/>
-							<div className="d-flex flex-column ml-2">
-								<h5>Pilot Jones</h5>
-								<h6 className="text-muted">by Frank Ocean</h6>
-							</div>
-						</div>
-
-						<span className="float-right font-italic">3:04</span>
-					</div>
-					<hr />
+					{tracks.map((track) => {
+						return (
+							<span>
+								<PlaylistItem
+									title={track.title}
+									artist={track.artist}
+									runtime={track.runtime}
+									coverImg={track.coverImg}
+								/>
+								<hr />
+							</span>
+						);
+					})}
 				</div>
 
 				<div className="col-4 d-flex flex-column mt-5">
@@ -106,4 +96,16 @@ const Details = () => {
 	);
 };
 
-export default Details;
+const stateToPropertyMapper = (state) => ({
+	title: state.playlistDetailsReducer.title,
+	totalRuntime: state.playlistDetailsReducer.totalRuntime,
+	tracks: state.playlistDetailsReducer.tracks,
+});
+const dispatchToPropertyMapper = (dispatch) => ({
+	//services
+});
+
+export default connect(
+	stateToPropertyMapper,
+	dispatchToPropertyMapper
+)(Details);
