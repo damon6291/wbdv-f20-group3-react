@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Navbar, User, Playlist} from '../index';
+import {searchForSongs} from '../../services/Services';
 
 const Search = ({playlists, findPlaylists}) => {
   const [query, setQuery] = useState('');
@@ -12,6 +13,11 @@ const Search = ({playlists, findPlaylists}) => {
   //   findPlaylists();
   // }, []);
 
+  const onSearchHandler = () => {
+    const json = {searchParams: query};
+    searchForSongs(json);
+  };
+
   return (
     <React.Fragment>
       <Navbar />
@@ -21,7 +27,9 @@ const Search = ({playlists, findPlaylists}) => {
             type="text"
             placeholder="Search..."
             className="w-75 mx-auto my-5 search-box px-2 py-2 shadow"
+            onChange={(e) => setQuery(e.target.value)}
           />
+          <button onClick={() => onSearchHandler()}>Enter</button>
           <div className="d-flex">
             <div className="col-8">
               <div className="w-75">
