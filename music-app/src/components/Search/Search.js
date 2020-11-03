@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Navbar, User, Playlist} from '../index';
-import {searchForSongs} from '../../services/Services';
+import {searchForSongs, spotifyLogin} from '../../services/Services';
 
 const Search = ({playlists, findPlaylists}) => {
   const [query, setQuery] = useState('');

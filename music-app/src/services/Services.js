@@ -1,5 +1,5 @@
 
-export const searchForSongs = (song) => {
+export const searchForSongs = (song) =>
   fetch('/searchForSong', {
     method: 'POST',
     body: JSON.stringify(song),
@@ -7,8 +7,8 @@ export const searchForSongs = (song) => {
       'content-type': 'application/json',
     },
     json: true
-  }).then(response => console.log(response))
-    }
+  }).then(response => response.json()).then(results => console.log(results))
+
 
 export default {
   searchForSongs

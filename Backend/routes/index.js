@@ -9,16 +9,6 @@ var app = express();
 app.use(cors());
 app.use(body_parser.json());
 
-// router.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', '*');
-//   res.header('Access-Control-Allow-Methods', 'DELETE, POST, GET, OPTIONS');
-//   res.header(
-//     'Access-Control-Allow-Headers',
-//     'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'
-//   );
-//   next();
-// });
-
 client_id = '64a311df55f24059a326323c754eedfd';
 client_Secret = '71ed2c4226d746488ca2afd497128671';
 client_auth_code = [];
@@ -44,32 +34,6 @@ app.get('/spotifyLogin', (req, res) => {
       '&scope=' +
       scope
   );
-});
-
-app.post('/searchForSong', (req, res) => {
-  try {
-    console.log(req.body)
-    searchParams = req.body.searchParams
-    searchParams.replace(' ', '%20');
-    console.log("Client access token");
-    console.log(client_access_token[0]);
-    var authOptions = {
-      url: 'https://api.spotify.com/v1/search?q=' + searchParams + '&type=artist',
-      headers: {
-        'Authorization': 'Bearer ' + new Buffer(client_access_token[0]).toString('base64')
-      }
-    };
-
-    request.post(authOptions, (error, response, body) => {
-      console.log(body);
-      res.json({
-        body,
-      });
-    });
-  } catch (e) {
-    console.log('there is an error searching');
-    console.log(e);
-  }
 });
 
 app.get('/post_authentication', (req, res) => {
@@ -108,27 +72,46 @@ app.get('/post_authentication', (req, res) => {
   }
 });
 
-
-app.get('user_profile', (req, res) => {
+app.post('/searchForSong', (req, res) => {
   try {
+    searchParams = req.body.searchParams
+    searchParams.replace(' ', '%20');
+    console.log("Client access token");
+    console.log(client_access_token[0]);
+    access_token = client_access_token[0]
     var authOptions = {
-      url: 'https://accounts.spotify.com/v1/me',
-      form: {
-        code: code,
-        redirect_uri: 'http://localhost:8080/post_authentication',
-        grant_type: 'authorization_code',
-      },
-      headers: {
-        Authorization: 'Basic ' + new Buffer(client_auth_code[0]).toString('base64'),
-      },
-      json: true,
+        url: 'https://api.spotify.com/v1/search?q=' + searchParams + '&type==track',
+        headers: {'Authorization': 'Bearer ' + access_token}
+    };
+    request.get(authOptions, (error, response, body) => {
+        console.log(response.body)
+        res.json({
+            results:response.body
+        })
+    });
+  }
+  catch (e) {
+    console.log('there is an error searching');
+    console.log(e);
+  }
+});
+
+app.get('/user_profile', (req, res) => {
+  try {
+    access_token = client_access_token[0]
+    var authOptions = {
+        method: 'GET',
+        url: 'https://api.spotify.com/v1/me',
+        headers: {
+            'Authorization': 'Bearer ' + access_token,
+        }
     };
 
-    request.post(authOptions, (error, response, body) => {
-      console.log(body);
-      res.json({
-        body,
-      });
+    request.get(authOptions, (error, response, body) => {
+        console.log(body);
+        res.json({
+            body
+        });
     });
   } catch (e) {
     console.log('there was an error retrieving user profile information');
