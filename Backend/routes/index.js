@@ -40,7 +40,7 @@ app.get('/post_authentication', (req, res) => {
   try {
     code = req.query.code;
     console.log(code);
-    client_auth_code = []
+    client_auth_code = [];
     client_auth_code.push(code);
 
     var authOptions = {
@@ -58,8 +58,8 @@ app.get('/post_authentication', (req, res) => {
 
     request.post(authOptions, (error, response, body) => {
       console.log(body);
-      client_access_token = []
-      client_refresh_token = []
+      client_access_token = [];
+      client_refresh_token = [];
       client_access_token.push(body.access_token);
       client_refresh_token.push(body.refresh_token);
       res.json({
@@ -74,23 +74,22 @@ app.get('/post_authentication', (req, res) => {
 
 app.post('/searchForSong', (req, res) => {
   try {
-    searchParams = req.body.searchParams
+    searchParams = req.body.searchParams;
     searchParams.replace(' ', '%20');
-    console.log("Client access token");
+    console.log('Client access token');
     console.log(client_access_token[0]);
-    access_token = client_access_token[0]
+    access_token = client_access_token[0];
     var authOptions = {
-        url: 'https://api.spotify.com/v1/search?q=' + searchParams + '&type==track',
-        headers: {'Authorization': 'Bearer ' + access_token}
+      url: 'https://api.spotify.com/v1/search?q=' + searchParams + '&type=track',
+      headers: {Authorization: 'Bearer ' + access_token},
     };
     request.get(authOptions, (error, response, body) => {
-        console.log(response.body)
-        res.json({
-            results:response.body
-        })
+      console.log(response.body);
+      res.json({
+        results: response.body,
+      });
     });
-  }
-  catch (e) {
+  } catch (e) {
     console.log('there is an error searching');
     console.log(e);
   }
@@ -98,20 +97,20 @@ app.post('/searchForSong', (req, res) => {
 
 app.get('/user_profile', (req, res) => {
   try {
-    access_token = client_access_token[0]
+    access_token = client_access_token[0];
     var authOptions = {
-        method: 'GET',
-        url: 'https://api.spotify.com/v1/me',
-        headers: {
-            'Authorization': 'Bearer ' + access_token,
-        }
+      method: 'GET',
+      url: 'https://api.spotify.com/v1/me',
+      headers: {
+        Authorization: 'Bearer ' + access_token,
+      },
     };
 
     request.get(authOptions, (error, response, body) => {
-        console.log(body);
-        res.json({
-            body
-        });
+      console.log(body);
+      res.json({
+        body,
+      });
     });
   } catch (e) {
     console.log('there was an error retrieving user profile information');

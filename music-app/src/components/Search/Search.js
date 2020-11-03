@@ -1,21 +1,17 @@
 import React, {useState, useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Navbar, User, Playlist} from '../index';
-import {searchForSongs, spotifyLogin} from '../../services/Services';
 
-const Search = ({playlists, findPlaylists}) => {
+const Search = ({playLists = [], findPlayLists}) => {
   const [query, setQuery] = useState('');
-  // const modifiedPlayLists = playlists.filter((playlist) => {
-  //   return playlist.toLowerCase().includes(query.toLowerCase()) ? playlist : null;
-  // });
 
-  // useEffect(() => {
-  //   findPlaylists();
-  // }, []);
+  useEffect(() => {}, [playLists]);
 
-  const onSearchHandler = () => {
-    const json = {searchParams: query};
-    searchForSongs(json);
+  const onSearchHandler = (e) => {
+    if (e.key === 'Enter') {
+      const json = {searchParams: query};
+      findPlayLists(json);
+    }
   };
 
   return (
@@ -28,17 +24,17 @@ const Search = ({playlists, findPlaylists}) => {
             placeholder="Search..."
             className="w-75 mx-auto my-5 search-box px-2 py-2 shadow"
             onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={(e) => onSearchHandler(e)}
           />
-          <button onClick={() => onSearchHandler()}>Enter</button>
           <div className="d-flex">
             <div className="col-8">
               <div className="w-75">
                 <h3 className="border-bottom pl-4 pb-3">Playlists</h3>
-                <Playlist />
-                <Playlist />
-                {/* {modifiedPlayLists.map((playlist) => (
-                  <Playlist key={playlist.id} playlist={playlist} />
-                ))} */}
+
+                {playLists.map((playList, id) => {
+                  console.log(playList);
+                  return <Playlist key={id} playList={playList} />;
+                })}
               </div>
             </div>
             <div className="col-4">
