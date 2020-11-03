@@ -80,7 +80,7 @@ app.post('/searchForSong', (req, res) => {
     console.log(client_access_token[0]);
     access_token = client_access_token[0]
     var authOptions = {
-        url: 'https://api.spotify.com/v1/search?q=' + searchParams + '&type==track',
+        url: 'https://api.spotify.com/v1/search?q=' + searchParams + '&type=track',
         headers: {'Authorization': 'Bearer ' + access_token}
     };
     request.get(authOptions, (error, response, body) => {
@@ -96,6 +96,50 @@ app.post('/searchForSong', (req, res) => {
   }
 });
 
+app.get('/trackinformation', (req,res) =>{
+    //change app.get to app.post
+    try{
+        //12VpffJDy2d2F64t0rTrbh
+        //track_id = req.body.id
+        track_id = '12VpffJDy2d2F64t0rTrbh'
+        access_token = client_access_token[0]
+        var authOptions = {
+            url: 'https://api.spotify.com/v1/tracks/' + track_id,
+            headers: {'Authorization': 'Bearer ' + access_token}
+        };
+        request.get(authOptions, (error, response, body) => {
+            general_track_info = body;
+            var authOptions2 = {
+                url: 'https://api.spotify.com/v1/audio-features/' + track_id,
+                headers: {'Authorization': 'Bearer ' + access_token}
+            };
+            request.get(authOptions2, (error, response, body) => {
+                specific_track_info = body;
+                res.json({
+                    general_track_info,
+                    specific_track_info
+                })
+//                var authOptions3 = {
+//                    url: 'https://api.spotify.com/v1/audio-analysis/' + track_id,
+//                    headers: {'Authorization': 'Bearer ' + access_token}
+//                }
+//                request.get(authOptions3, (error, response, body) => {
+//                    console.log(body);
+//                    track_analysis = body;
+//                    res.json({
+//                        general_track_info,
+//                        specific_track_info,
+//                        track_analysis
+//                    })
+//                })
+            })
+        });
+    }
+    catch(e){
+
+    }
+})
+
 app.get('/user_profile', (req, res) => {
   try {
     access_token = client_access_token[0]
@@ -106,12 +150,32 @@ app.get('/user_profile', (req, res) => {
             'Authorization': 'Bearer ' + access_token,
         }
     };
-
     request.get(authOptions, (error, response, body) => {
+        general_user_info = body;
         console.log(body);
-        res.json({
-            body
-        });
+        var authOptions2 = {
+            url: 'https://api.spotify.com/v1/me/top/tracks',
+            headers: {'Authorization': 'Bearer ' + access_token}
+        };
+        request.get(authOptions2, (error, response, body) => {
+            top_tracks = body;
+            var authOptions3 = {
+                url: 'https://api.spotify.com/v1/me/top/artists',
+                headers: {'Authorization': 'Bearer ' + access_token}
+            };
+            request.get(authOptions3, (error, response, body) => {
+                top_artists = body
+                console.log(top_tracks);
+                console.log(top_artists)
+                res.json({
+                    general_user_info,
+                    top_tracks,
+                    top_artists
+                });
+            })
+
+        })
+
     });
   } catch (e) {
     console.log('there was an error retrieving user profile information');
@@ -119,7 +183,12 @@ app.get('/user_profile', (req, res) => {
   }
 });
 
-app.get('user_top_tracks', (req, res) => {});
+app.get('user_top_tracks', (req, res) => {
+
+    access_token = client_access_token[0]
+
+
+});
 
 app.get('');
 

@@ -4,8 +4,6 @@
     <list default="true" id="acd611ca-c055-46d2-b74e-2d68719eafeb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/routes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-app/src/components/Search/Search.js" beforeDir="false" afterPath="$PROJECT_DIR$/music-app/src/components/Search/Search.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-app/src/services/Services.js" beforeDir="false" afterPath="$PROJECT_DIR$/music-app/src/services/Services.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
