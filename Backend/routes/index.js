@@ -22,11 +22,12 @@ app.use(body_parser.json());
 client_id = '64a311df55f24059a326323c754eedfd';
 client_Secret = '71ed2c4226d746488ca2afd497128671';
 client_auth_code = [];
+client_access_token = [];
 client_refresh_token = [];
 
 app.get('/spotifyLogin', (req, res) => {
   url = 'https://accounts.spotify.com/authorize';
-  redirect_url = 'http://localhost:3001/post_authentication';
+  redirect_url = 'http://localhost:8080/post_authentication';
   scope =
     'ugc-image-upload%20user-read-recently-played%20' +
     'user-read-playback-position%20user-top-read%20' +
@@ -45,16 +46,18 @@ app.get('/spotifyLogin', (req, res) => {
   );
 });
 
-app.get('/searchForSong', (req, res) => {
+app.post('/searchForSong', (req, res) => {
   try {
-    searchParams = req.body.searchParams;
+    console.log(req.body)
+    searchParams = req.body.searchParams
     searchParams.replace(' ', '%20');
+    console.log("Client access token");
+    console.log(client_access_token[0]);
     var authOptions = {
       url: 'https://api.spotify.com/v1/search?q=' + searchParams + '&type=artist',
       headers: {
-        Authorization: 'Bearer ' + new Buffer(client_auth_code[0]).toString('base64'),
-      },
-      json: true,
+        'Authorization': 'Bearer ' + new Buffer(client_access_token[0]).toString('base64')
+      }
     };
 
     request.post(authOptions, (error, response, body) => {
@@ -73,13 +76,14 @@ app.get('/post_authentication', (req, res) => {
   try {
     code = req.query.code;
     console.log(code);
+    client_auth_code = []
     client_auth_code.push(code);
 
     var authOptions = {
       url: 'https://accounts.spotify.com/api/token',
       form: {
         code: code,
-        redirect_uri: 'http://localhost:3001/post_authentication',
+        redirect_uri: 'http://localhost:8080/post_authentication',
         grant_type: 'authorization_code',
       },
       headers: {
@@ -90,8 +94,10 @@ app.get('/post_authentication', (req, res) => {
 
     request.post(authOptions, (error, response, body) => {
       console.log(body);
-      client_auth_code.push(body.access_token);
-      client_auth_code.push(body.refresh_token);
+      client_access_token = []
+      client_refresh_token = []
+      client_access_token.push(body.access_token);
+      client_refresh_token.push(body.refresh_token);
       res.json({
         body,
       });
@@ -102,13 +108,14 @@ app.get('/post_authentication', (req, res) => {
   }
 });
 
+
 app.get('user_profile', (req, res) => {
   try {
     var authOptions = {
       url: 'https://accounts.spotify.com/v1/me',
       form: {
         code: code,
-        redirect_uri: 'http://localhost:3001/post_authentication',
+        redirect_uri: 'http://localhost:8080/post_authentication',
         grant_type: 'authorization_code',
       },
       headers: {
@@ -138,6 +145,6 @@ app.get('/', function (req, res) {
   res.json({title: 'Express'});
 });
 
-app.listen(3001);
+app.listen(8080);
 
 module.exports = app;

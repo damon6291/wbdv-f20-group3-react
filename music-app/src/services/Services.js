@@ -1,16 +1,15 @@
-const url = 'http://localhost:3001/searchForSong'; // + topic_id
 
-export const searchForSongs = (song) =>
-  fetch(url, {
+export const searchForSongs = (song) => {
+  fetch('/searchForSong', {
     method: 'POST',
     body: JSON.stringify(song),
     headers: {
       'content-type': 'application/json',
     },
-  })
-    .then(console.log(song))
-    .then((response) => response.json());
+    json: true
+  }).then(response => console.log(response))
+    }
 
 export default {
-  searchForSongs,
+  searchForSongs
 };
