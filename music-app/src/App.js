@@ -6,7 +6,7 @@ import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import {createStore, combineReducers} from 'redux';
 import {Provider} from 'react-redux';
 // for small Playlist widget || used on User Profile page
-import playListReducer from './reducers/playListReducer';
+import playListReducer from './reducers/playlistReducer';
 // for large Playlist display || used on PlaylistDetails page || includes inner track details
 import playlistDetailsReducer from './reducers/playlistDetailsReducer';
 

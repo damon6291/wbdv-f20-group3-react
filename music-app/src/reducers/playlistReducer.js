@@ -1,4 +1,4 @@
-import {FIND_PLAYLIST} from '../actions/playListAction';
+import {FIND_PLAYLIST} from '../actions/playlistAction';
 
 const initialState = {
   playLists: [],

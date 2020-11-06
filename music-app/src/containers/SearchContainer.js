@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import Search from '../components/Search/Search';
-import {findPlayLists} from '../actions/playListAction';
+import {findPlayLists} from '../actions/playlistAction';
 import Service from '../services/Services';
 
 const stateToPropertyMapper = (state) => ({
