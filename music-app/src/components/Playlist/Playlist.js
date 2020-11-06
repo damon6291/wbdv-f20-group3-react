@@ -2,40 +2,34 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../App.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faPlay, faThumbsUp, faClock} from '@fortawesome/free-solid-svg-icons';
-import sampleImg from '../../assets/damon.jpg';
+import {faThumbsUp, faClock} from '@fortawesome/free-solid-svg-icons';
 
-const Playlist = () => {
+const Playlist = ({playList: {album, artists, duration_ms, name, popularity}}) => {
   return (
     <div className="container mt-4">
+      {console.log(album.images[0].url)}
       <div className="d-flex align-items-center">
-        <img src={sampleImg} alt="user" className="playlist-image mr-5" />
+        <img src={album.images[0].url} alt="user" className="playlist-image mr-5" />
         <div className="d-flex flex-column">
-          <span>Songs to listen while coding</span>
+          <span>{name}</span>
           <span className="text-secondary">
-            <small>by Damon Joung</small>
+            <small>by {artists[0].name}</small>
           </span>
           <div>
             <span className="mr-2 text-secondary">
               <small>
-                <FontAwesomeIcon icon={faPlay} />
-                100,000
-              </small>
-            </span>
-            <span className="mr-2 text-secondary">
-              <small>
                 <FontAwesomeIcon icon={faThumbsUp} />
-                1,000
+                {popularity}
               </small>
             </span>
             <span className="mr-2 text-secondary">
               <small>
                 <FontAwesomeIcon icon={faClock} />
-                2h18m
+                {duration_ms}
               </small>
             </span>
             <span className="mr-2 text-secondary">
-              <small>1y ago</small>
+              <small>{album.release_date}</small>
             </span>
           </div>
         </div>

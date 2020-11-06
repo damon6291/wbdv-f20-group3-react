@@ -1,18 +1,18 @@
-import {FIND_PLAYLIST} from '../actions/playlistAction';
+import {FIND_PLAYLIST} from '../actions/playListAction';
 
 const initialState = {
-  playlists: [],
+  playLists: [],
 };
 
-const playlistReducer = (state = initialState, action) => {
+const playListReducer = (state = initialState, action) => {
   switch (action.type) {
     case FIND_PLAYLIST:
       return {
-        playlists: action.playlists,
+        playLists: action.playLists,
       };
     default:
       return state;
   }
 };
 
-export default playlistReducer;
+export default playListReducer;

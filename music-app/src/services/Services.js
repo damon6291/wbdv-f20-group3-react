@@ -1,4 +1,3 @@
-
 export const searchForSongs = (song) =>
   fetch('/searchForSong', {
     method: 'POST',
@@ -6,10 +5,18 @@ export const searchForSongs = (song) =>
     headers: {
       'content-type': 'application/json',
     },
-    json: true
-  }).then(response => response.json()).then(results => console.log(results))
-
+    json: true,
+  })
+    .then((response) => response.json())
+    .then((results) => results.results)
+    .then((string) => JSON.parse(string))
+    .then((json) => json.tracks.items);
 
 export default {
-  searchForSongs
+  searchForSongs,
 };
+
+// .then((response) => response.json())
+// .then((results) => results.results)
+// .then((string) => JSON.parse(string))
+// .then((json) => json.tracks.items);
