@@ -1,3 +1,7 @@
+**_npm run build to build project_**
+</br>
+**_npm run dev to start the project in local host_**
+
 [Link to GitHub]
 (https://github.com/damon6291/wbdv-f20-group3-react)
 </br>
