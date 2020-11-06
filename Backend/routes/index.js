@@ -14,6 +14,8 @@ client_Secret = '71ed2c4226d746488ca2afd497128671';
 client_auth_code = [];
 client_access_token = [];
 client_refresh_token = [];
+constant_access_token = 'BQCSTtFbENz0sLDQW2VJbtns02QPLIcnnG-perIleJGSa_r8M5AXOrS0O7PewyyG3K-Ad46RIpnvLCkJf_shsT89baXzqZK5BDnk0D-8pFf50M8YTXAtjH8-KzQCHaGiFDKtTS7f33nDuoxqR7-oQ5_CqeVRlcMycbrvyixXo67X0Nj9iwNxo_WXB7S2TmSnMJwHy_bc-PTiUQ7-sGBzmIGYo-oXE5JL7HTLU4HLj30cKcxLjNn_-6uk9jYVdfoSHUezOmAjGmIHozRFkjZGzSDd';
+constant_refresh_token = 'AQCKvYSAjSY4q9_86018kjOuzA46cy2i8_Tz6WAO-V72pXtxr2RJcupWNxPUodU8k-QifMC6LzxOdG_hMEAwj9FrGSLCvSeWY3MqyNt7vfT4RpwJV51yo7ZCX_3J_CRLsW4';
 
 app.get('/spotifyLogin', (req, res) => {
   url = 'https://accounts.spotify.com/authorize';
@@ -77,24 +79,67 @@ app.post('/searchForSong', (req, res) => {
     searchParams = req.body.searchParams
     searchParams.replace(' ', '%20');
     console.log("Client access token");
-    console.log(client_access_token[0]);
-    access_token = client_access_token[0]
-    var authOptions = {
-        url: 'https://api.spotify.com/v1/search?q=' + searchParams + '&type=track',
-        headers: {'Authorization': 'Bearer ' + access_token}
-    };
-    request.get(authOptions, (error, response, body) => {
-        console.log(response.body)
-        res.json({
-            results:response.body
-        })
-    });
+    if (client_access_token.size > 0) {
+        console.log(client_access_token[0]);
+        access_token = client_access_token[0]
+        var authOptions = {
+            url: 'https://api.spotify.com/v1/search?q=' + searchParams + '&type=track',
+            headers: {'Authorization': 'Bearer ' + access_token}
+        };
+        request.get(authOptions, (error, response, body) => {
+            console.log(response.body)
+            res.json({
+                results:response.body
+            })
+        });
+    }
+    else {
+        console.log(constant_access_token);
+        access_token = constant_access_token
+        console.log(access_token);
+        var authOptions = {
+            url: 'https://api.spotify.com/v1/search?q=' + searchParams + '&type=track',
+            headers: {'Authorization': 'Bearer ' + access_token}
+        };
+        request.get(authOptions, (error, response, body) => {
+            console.log(response.body)
+            res.json({
+                results:response.body
+            })
+        });
+    }
   }
   catch (e) {
     console.log('there is an error searching');
     console.log(e);
   }
 });
+
+function refresh_access_spotify() {
+    var authOptions = {
+          url: 'https://accounts.spotify.com/api/token',
+          form: {
+            refresh_token: constant_refresh_token,
+            grant_type: 'refresh_token',
+          },
+          headers: {
+            Authorization: 'Basic ' + new Buffer(client_id + ':' + client_Secret).toString('base64'),
+          },
+          json: true,
+        };
+
+    request.post(authOptions, (error, response, body) => {
+        console.log(body);
+        client_access_token = [body.access_token]
+        if(body.refresh_token != undefined) {
+            client_refresh_token = [body.refresh_token]
+            constant_refresh_token = body.refresh_token;
+        }
+        constant_access_token = body.access_token;
+    });
+}
+
+setInterval(refresh_access_spotify, 3600);
 
 app.get('/trackinformation', (req,res) =>{
     //change app.get to app.post
@@ -184,10 +229,7 @@ app.get('/user_profile', (req, res) => {
 });
 
 app.get('user_top_tracks', (req, res) => {
-
     access_token = client_access_token[0]
-
-
 });
 
 app.get('');
