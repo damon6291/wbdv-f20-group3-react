@@ -1,3 +1,4 @@
+
 var express = require('express');
 var request = require('request');
 var router = express.Router();
@@ -78,7 +79,6 @@ app.post('/searchForSong', (req, res) => {
   try {
     searchParams = req.body.searchParams;
     searchParams.replace(' ', '%20');
-<<<<<<< HEAD
     console.log("Client access token");
     if (client_access_token.size > 0) {
         console.log(client_access_token[0]);
@@ -110,23 +110,7 @@ app.post('/searchForSong', (req, res) => {
         });
     }
   }
-  catch (e) {
-=======
-    console.log('Client access token');
-    console.log(client_access_token[0]);
-    access_token = client_access_token[0];
-    var authOptions = {
-      url: 'https://api.spotify.com/v1/search?q=' + searchParams + '&type=track',
-      headers: {Authorization: 'Bearer ' + access_token},
-    };
-    request.get(authOptions, (error, response, body) => {
-      console.log(response.body);
-      res.json({
-        results: response.body,
-      });
-    });
-  } catch (e) {
->>>>>>> bbad89c264fc881e4477ce9863edd02522a608ea
+    catch (e) {
     console.log('there is an error searching');
     console.log(e);
   }
@@ -213,7 +197,6 @@ app.get('/user_profile', (req, res) => {
       },
     };
     request.get(authOptions, (error, response, body) => {
-<<<<<<< HEAD
         general_user_info = body;
         console.log(body);
         var authOptions2 = {
@@ -238,13 +221,10 @@ app.get('/user_profile', (req, res) => {
             })
 
         })
-
-=======
       console.log(body);
       res.json({
         body,
       });
->>>>>>> bbad89c264fc881e4477ce9863edd02522a608ea
     });
   } catch (e) {
     console.log('there was an error retrieving user profile information');
@@ -266,3 +246,4 @@ app.get('/', function (req, res) {
 app.listen(8080);
 
 module.exports = app;
+
