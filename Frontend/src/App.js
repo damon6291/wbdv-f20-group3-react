@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Details, Home, Login, Register, Profile, Search, Playlist } from './components/index';
-import { SearchContainer } from './containers/index';
+import { SearchContainer, DetailsContainer } from './containers/index';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
@@ -29,7 +29,7 @@ function App() {
         <Link to="/Search">Search</Link>
         <Route
           path="/Details/:playlistId"
-          render={(props) => <Details {...props} playlistId={props.match.params.playlistId} />}
+          render={(props) => <DetailsContainer {...props} playlistId={props.match.params.playlistId} />}
         />
         <Route path="/Home" component={Home} />
         <Route path="/Login" component={Login} />

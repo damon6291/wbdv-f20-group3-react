@@ -23,7 +23,10 @@ export const getPlaylistInformation = (query) =>
       'content-type': 'application/json',
     },
     json: true,
-  }).then((response) => response.json());
+  })
+  .then((response) => response.json())
+  .then((result) => result.results)
+  .then((string) => JSON.parse(string));
 
 export default {
   searchForPlaylists,

@@ -1,8 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import Utils from '../../utils/utils';
 // import { bounceIn } from "animate.css";
 //import "animate.css";
 
-const PlaylistItem = ({title, artist, runtime, coverImg}) => {
+const PlaylistItem = ({ title, artist, runtime, coverImg }) => {
   return (
     <div className="d-flex flex-row justify-content-between align-items-center ">
       <div className="d-flex flex-row align-items-center  animate__animated animate__flipInX animate__slow">
@@ -22,7 +23,7 @@ const PlaylistItem = ({title, artist, runtime, coverImg}) => {
         </div>
       </div>
 
-      <span className="float-right font-italic">{runtime}</span>
+      <span className="float-right font-italic">{Utils.msToMin(runtime)}</span>
     </div>
   );
 };

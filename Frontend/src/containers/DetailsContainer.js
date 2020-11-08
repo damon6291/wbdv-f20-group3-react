@@ -4,7 +4,8 @@ import { findDetails } from '../actions/DetailsAction';
 import Service from '../services/Services';
 
 const stateToPropertyMapper = (state) => ({
-  details: state.playlistDetailsReducer.details,
+  details: state.DetailsReducer.details,
+  totalRuntime: state.DetailsReducer.totalRuntime,
 });
 
 const propertyToDispatchMapper = (dispatch) => ({

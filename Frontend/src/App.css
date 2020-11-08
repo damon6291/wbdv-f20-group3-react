@@ -30,3 +30,14 @@
 .profile-position {
   top: -80px;
 }
+
+body {
+  background-color: #bfd1e5 !important;
+}
+
+.webdv-playlist-style {
+  background-color: #ebf5ee;
+  border-bottom: solid 6px #9ab6d6;
+  border-right: solid 3px #9ab6d6;
+  border-radius: 13px;
+}
