@@ -15,6 +15,17 @@ export const searchForPlaylists = (query) =>
 // export const searchForSongs = (query) =>
 //   fetch('/playlistTracks')
 
+export const getPlaylistInformation = (playlistId) =>
+    fetch('/getPlaylistInformation', {
+        method: 'POST',
+        body: JSON.stringify(playlistId),
+        headers: {
+          'content-type': 'application/json',
+        },
+        json: true
+    }).then((response) => response.json());
+
+
 export default {
   searchForPlaylists,
 };
