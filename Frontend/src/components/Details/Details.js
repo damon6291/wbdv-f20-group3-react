@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { connect } from 'react-redux';
 
@@ -54,7 +54,11 @@ import './detailsStyle.css';
 // 	],
 // };
 
-const Details = ({ playlistId, title, totalRuntime, tracks }) => {
+const Details = ({ playlistId, details = [], findDetails, title, totalRuntime, tracks }) => {
+  useEffect(() => {
+    findPlaylist(playlistId);
+    console.log(playlist);
+  }, [playlistId]);
   return (
     <div className="container">
       <div className="row">

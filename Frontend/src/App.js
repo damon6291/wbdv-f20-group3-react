@@ -8,11 +8,11 @@ import { Provider } from 'react-redux';
 // for small Playlist widget || used on User Profile page
 import playListReducer from './reducers/playListReducer';
 // for large Playlist display || used on PlaylistDetails page || includes inner track details
-import playlistDetailsReducer from './reducers/playlistDetailsReducer';
+import DetailsReducer from './reducers/DetailsReducer';
 
 const allReducer = combineReducers({
   playListReducer,
-  playlistDetailsReducer,
+  DetailsReducer,
 });
 
 const store = createStore(allReducer);
