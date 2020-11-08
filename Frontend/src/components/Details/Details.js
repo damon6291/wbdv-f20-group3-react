@@ -117,7 +117,7 @@ const stateToPropertyMapper = (state) => ({
   tracks: state.playlistDetailsReducer.tracks,
 });
 const dispatchToPropertyMapper = (dispatch) => ({
-  //services
+  //services-
 });
 
 export default connect(stateToPropertyMapper, dispatchToPropertyMapper)(Details);

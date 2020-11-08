@@ -76,6 +76,43 @@ app.get('/post_authentication', (req, res) => {
   }
 });
 
+app.post('/getPlayListInformation', (req,res) => {
+    try {
+        playlistId = req.body.playlistId
+        if (client_access_token.size > 0) {
+            console.log(client_access_token[0]);
+            access_token = client_access_token[0];
+            var authOptions = {
+                url: 'https://api.spotify.com/v1/playlists/' + playlistId,
+                headers: { Authorization: 'Bearer ' + access_token },
+            };
+            request.get(authOptions, (error, response, body) => {
+                console.log(response.body);
+                res.json({
+                    results: response.body,
+                });
+            });
+         } else {
+            console.log(constant_access_token);
+            access_token = constant_access_token;
+            console.log(access_token);
+            var authOptions = {
+                url: 'https://api.spotify.com/v1/playlists/' + playlistId,
+                headers: { Authorization: 'Bearer ' + access_token },
+            };
+            request.get(authOptions, (error, response, body) => {
+                console.log(response.body);
+                res.json({
+                    results: response.body,
+                });
+            });
+        }
+    }
+    catch(e) {
+        console.log("There was an error getting PlaylistInformation: " + e);
+    }
+})
+
 app.post('/searchForPlaylists', (req, res) => {
   try {
     searchParams = req.body.searchParams;

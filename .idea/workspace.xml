@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="acd611ca-c055-46d2-b74e-2d68719eafeb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-app/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/music-app/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-app/src/containers/SearchContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/music-app/src/containers/SearchContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/routes/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/Details/Details.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/Details/Details.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
